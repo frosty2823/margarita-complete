@@ -1,0 +1,31 @@
+{
+  "manifest_version": 3,
+  "name": "Margarita",
+  "version": "3.0",
+  "description": "It fetches the content from currently opened conversation",
+
+  "author": "Oliver",
+
+  "action": {
+    "default_icon": {
+      "19": "image.png"
+    },
+    "default_title": "Margarita",
+    "default_popup": "popup.html"
+  },
+  "permissions": [
+    "scripting",
+    "activeTab",
+    "tabs",
+    "clipboardRead",
+    "clipboardWrite",
+    "storage"
+  ],
+  "icons": {
+    "16": "image.png",
+    "32": "image.png",
+    "48": "image.png",
+    "128": "image.png"
+  },
+  "host_permissions": ["https://*/*"]
+}

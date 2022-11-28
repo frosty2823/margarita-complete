@@ -1,0 +1,125 @@
+body {
+  width: 175px;
+}
+.wrapper {
+  align-items: center;
+}
+.margarita {
+  width: 175px;
+  height: 25px;
+  margin: 2px;
+  color: rgb(13, 55, 63);
+  border-radius: 20px;
+  border-color: rgb(16, 98, 112);
+  background-color: rgb(255, 255, 255);
+  font-size: 14px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.5s;
+}
+
+.margarita span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.margarita span:after {
+  content: "\00bb";
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.margarita:hover span {
+  padding-right: 25px;
+}
+
+.margarita:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+#personalNote {
+  width: 175px;
+}
+
+#labelNote {
+  font-size: 14px;
+  color: rgb(13, 55, 63);
+}
+
+#clipped {
+  font-size: 16px;
+  color: rgb(13, 55, 63);
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 18px;
+  margin-left: 66px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 10px;
+  width: 10px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #2196f3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196f3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.language {
+  padding: 6px;
+  color: rgb(16, 98, 112);
+  font-size: 14px;
+  text-align: center;
+}
