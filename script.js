@@ -167,8 +167,13 @@ async function runCopyFunction(buttonText, personalNote, successLabel) {
 
 const runAirTable = function () {
   setTimeout(function () {
-    document.querySelectorAll(".rowNumber")[1].click();
-    document.querySelectorAll(".rowNumber")[1].focus();
+    document
+      .querySelector(".dataRow.ghost.leftPane.rowInsertionEnabled")
+      .click();
+    document
+      .querySelector(".dataRow.ghost.leftPane.rowInsertionEnabled")
+      .click();
+
     setTimeout(function () {
       document.execCommand("paste");
     }, 1000);
@@ -213,8 +218,30 @@ const copyToClickBoard = function (buttonText, personalNote) {
   const email = document.querySelector(".gD").getAttribute("email");
   const domainName = email.split("@").pop();
   const arr = document.querySelectorAll(".a3s.aiL");
-  let lastEmailContent = arr[0].innerText.split("\n").join(" ");
-  lastEmailContent = lastEmailContent.split("\t").join(" ");
+  let ar = document.querySelector(".nH.aHU").children[0].children[2].children;
+  let current = 0;
+  for (let i = 0; i < ar.length; i++) {
+    let a = ar[i];
+    if (a.ariaExpanded == "true") {
+      current = i;
+      break;
+    }
+  }
+  let lastEmailContent = "";
+  if (current == arr.length - 1) {
+    lastEmailContent = arr[arr.length - 2].innerText.split("\n").join(" ");
+    lastEmailContent = lastEmailContent.split("\t").join(" ");
+  } else {
+    const notLast = document
+      .querySelector(".nH.hx")
+      .children[2].children[current].innerText.split("\n");
+    delete notLast[0];
+    delete notLast[1];
+    delete notLast[2];
+    lastEmailContent = notLast.join(" ");
+    lastEmailContent = lastEmailContent.split("\t").join(" ");
+  }
+
   const conversationURL = document.location.href;
   // Creating the textfield from where we will execute the copy commmand
   var textArea = document.createElement("textarea");
