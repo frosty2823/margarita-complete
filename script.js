@@ -213,10 +213,9 @@ const runGoogleSheet = function () {
 };
 
 const copyToClickBoard = function (buttonText, personalNote) {
-  let date = document.querySelector(".g3").getAttribute("title");
-  const fullName = document.querySelector(".gD").getAttribute("name");
-  const email = document.querySelector(".gD").getAttribute("email");
-  const domainName = email.split("@").pop();
+  // let date = document.querySelector(".g3").getAttribute("title");
+  // const email = document.querySelector(".gD").getAttribute("email");
+
   const arr = document.querySelectorAll(".a3s.aiL");
   let ar = document.querySelector(".nH.aHU").children[0].children[2].children;
   let current = 0;
@@ -227,12 +226,28 @@ const copyToClickBoard = function (buttonText, personalNote) {
       break;
     }
   }
+  let email = "";
+  let fullName = "";
+  let date = "";
   let lastEmailContent = "";
-  if (current == arr.length - 1) {
+  if (current == 0) {
+    email = document.querySelector(".qu").children[0].getAttribute("email");
+  } else {
+    let newa = ar[3].innerText.split("\n")[0].split("<");
+    let newaa = newa[newa.length - 1].split(">")[0];
+    email = newaa;
+  }
+  const domainName = email.split("@").pop();
+  if (current == ar.length - 1) {
     lastEmailContent = arr[arr.length - 2].innerText.split("\n").join(" ");
     lastEmailContent = lastEmailContent.split("\t").join(" ");
+    const newName = ar[current].innerText.split("\n")[0];
+    fullName = newName.split(" ");
+    delete fullName[fullName.length - 1];
+    fullName = fullName.join(" ");
+    date = ar[current].innerText.split("\n")[1];
   } else {
-    const notLast = document
+    let notLast = document
       .querySelector(".nH.hx")
       .children[2].children[current].innerText.split("\n");
     delete notLast[0];
@@ -240,31 +255,44 @@ const copyToClickBoard = function (buttonText, personalNote) {
     delete notLast[2];
     lastEmailContent = notLast.join(" ");
     lastEmailContent = lastEmailContent.split("\t").join(" ");
+    fullName = ar[current].innerText.split("\n")[0];
+    fullName = fullName.split(" ");
+    delete fullName[fullName.length - 1];
+    fullName = fullName.join(" ");
+    date = ar[current].innerText.split("\n")[1];
   }
-
   const conversationURL = document.location.href;
-  // Creating the textfield from where we will execute the copy commmand
-  var textArea = document.createElement("textarea");
-  let dateArray = date.split(" ");
-  let y1 = dateArray[2].split("");
-  let y3 = y1[0] + y1[1] + y1[2] + y1[3];
-  let month = 0;
-  let newD = dateArray[1].split("");
-  let newDD = newD[0] + newD[1];
-  if (dateArray[0] == "Jan") month = 1;
-  else if (dateArray[0] == "Feb") month = 2;
-  else if (dateArray[0] == "March") month = 3;
-  else if (dateArray[0] == "April") month = 4;
-  else if (dateArray[0] == "May") month = 5;
-  else if (dateArray[0] == "June") month = 6;
-  else if (dateArray[0] == "July") month = 7;
-  else if (dateArray[0] == "Aug") month = 8;
-  else if (dateArray[0] == "Sep") month = 9;
-  else if (dateArray[0] == "Oct") month = 10;
-  else if (dateArray[0] == "Nov") month = 11;
-  else if (dateArray[0] == "Dec") month = 12;
+  let newDD = "";
+  let month = "";
+  let y3 = "";
+  if (date.length <= 21) {
+    date = new Date();
+    newDD = date.getDate();
+    month = date.getMonth() + 1;
+    y3 = date.getFullYear();
+  } else {
+    // Creating the textfield from where we will execute the copy commmand
+    let dateArray = date.split(" ");
+    let y1 = dateArray[2].split("");
+    y3 = y1[0] + y1[1] + y1[2] + y1[3];
+    month = 0;
+    let newD = dateArray[1].split("");
+    newDD = newD[0] + newD[1];
+    if (dateArray[0] == "Jan") month = 1;
+    else if (dateArray[0] == "Feb") month = 2;
+    else if (dateArray[0] == "March") month = 3;
+    else if (dateArray[0] == "April") month = 4;
+    else if (dateArray[0] == "May") month = 5;
+    else if (dateArray[0] == "June") month = 6;
+    else if (dateArray[0] == "July") month = 7;
+    else if (dateArray[0] == "Aug") month = 8;
+    else if (dateArray[0] == "Sep") month = 9;
+    else if (dateArray[0] == "Oct") month = 10;
+    else if (dateArray[0] == "Nov") month = 11;
+    else if (dateArray[0] == "Dec") month = 12;
+  }
   date = `${month}/${newDD}/${y3}`;
-  console.log(date);
+  var textArea = document.createElement("textarea");
   textArea.value =
     fullName +
     "\t" +
@@ -281,7 +309,6 @@ const copyToClickBoard = function (buttonText, personalNote) {
     personalNote +
     "\t" +
     conversationURL;
-
   textArea.style.position = "fixed";
 
   document.body.appendChild(textArea);
