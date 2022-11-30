@@ -240,15 +240,9 @@ const copyToClickBoard = function (buttonText, personalNote) {
         .children[0].children[0].children[1].dataset.hovercardId;
     email = newa;
   } else {
-    if (
-      ar[current].children[0].children[0].children[0].children[0].children[1]
-        .children[0].children[1].children[0].children[0].children[0].children[1]
-        .children[0].children[0].children[0].children[0].children[0].children[0]
-        .children[0].children[0].textContent == "me"
-    ) {
-      let newa =
-        ar[current].children[0].children[0].children[0].children[0].children[0]
-          .children[0].children[0].children[1].dataset.hovercardId;
+    if (ar[current].innerText.split("\n")[2].includes("to me")) {
+      let newa = ar[current].querySelectorAll("[data-hovercard-id]")[2].dataset
+        .hovercardId;
       email = newa;
     } else {
       let newa = ar[current].innerText.split("\n")[0].split("<");
