@@ -265,6 +265,8 @@ const copyToClickBoard = function (buttonText, personalNote) {
     delete notLast[0];
     delete notLast[1];
     delete notLast[2];
+    delete notLast[3];
+    delete notLast[4];
     lastEmailContent = notLast.join(" ");
     lastEmailContent = lastEmailContent.split("\t").join(" ");
     let newn =
