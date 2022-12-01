@@ -167,16 +167,29 @@ async function runCopyFunction(buttonText, personalNote, successLabel) {
 
 const runAirTable = function () {
   setTimeout(function () {
-    document
-      .querySelector(".dataRow.ghost.leftPane.rowInsertionEnabled")
-      .click();
-
-    setTimeout(function () {
-      document.execCommand("paste");
+    if (
+      document.querySelector(
+        ".dataRow.leftPane.rowExpansionEnabled.rowSelectionEnabled.cursorCell"
+      ) != null
+    ) {
       document
         .querySelector(".dataRow.ghost.leftPane.rowInsertionEnabled")
         .click();
-    }, 1000);
+      document
+        .querySelector(".dataRow.ghost.leftPane.rowInsertionEnabled")
+        .click();
+      setTimeout(function () {
+        document.execCommand("paste");
+      }, 1000);
+    } else {
+      document
+        .querySelector(".dataRow.ghost.leftPane.rowInsertionEnabled")
+        .click();
+
+      setTimeout(function () {
+        document.execCommand("paste");
+      }, 1000);
+    }
   }, 2000);
 };
 
