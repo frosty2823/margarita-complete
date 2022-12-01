@@ -170,12 +170,12 @@ const runAirTable = function () {
     document
       .querySelector(".dataRow.ghost.leftPane.rowInsertionEnabled")
       .click();
-    document
-      .querySelector(".dataRow.ghost.leftPane.rowInsertionEnabled")
-      .click();
 
     setTimeout(function () {
       document.execCommand("paste");
+      document
+        .querySelector(".dataRow.ghost.leftPane.rowInsertionEnabled")
+        .click();
     }, 1000);
   }, 2000);
 };
