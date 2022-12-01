@@ -245,32 +245,18 @@ const copyToClickBoard = function (buttonText, personalNote) {
   let fullName = "";
   let date = "";
   let lastEmailContent = "";
-  if (current == 0) {
-    email = document.querySelector(".qu").children[0].getAttribute("email");
-  } else if (current == ar.length - 1) {
-    let newa =
-      ar[current].children[0].children[0].children[0].children[0].children[0]
-        .children[0].children[0].children[1].dataset.hovercardId;
-    email = newa;
-  } else {
-    if (ar[current].innerText.split("\n")[2].includes("to me")) {
-      let newa = ar[current].querySelectorAll("[data-hovercard-id]")[2].dataset
-        .hovercardId;
-      email = newa;
-    } else {
-      let newa = ar[current].innerText.split("\n")[0].split("<");
-      let newaa = newa[newa.length - 1].split(">")[0];
-      email = newaa;
-    }
-  }
+  let newa =
+    ar[current].children[0].children[0].children[0].children[0].children[0]
+      .children[0].children[0].children[1].dataset.hovercardId;
+  email = newa;
   const domainName = email.split("@").pop();
   if (current == ar.length - 1) {
     lastEmailContent = arr[arr.length - 2].innerText.split("\n").join(" ");
     lastEmailContent = lastEmailContent.split("\t").join(" ");
-    const newName = ar[current].innerText.split("\n")[0];
-    fullName = newName.split(" ");
-    delete fullName[fullName.length - 1];
-    fullName = fullName.join(" ");
+    let newn =
+      ar[current].children[0].children[0].children[0].children[0].children[0]
+        .children[0].children[0].children[1].dataset.name;
+    fullName = newn;
     date = ar[ar.length - 1].innerText.split("\n")[1];
   } else {
     let notLast = document
@@ -281,10 +267,10 @@ const copyToClickBoard = function (buttonText, personalNote) {
     delete notLast[2];
     lastEmailContent = notLast.join(" ");
     lastEmailContent = lastEmailContent.split("\t").join(" ");
-    fullName = ar[current].innerText.split("\n")[0];
-    fullName = fullName.split(" ");
-    delete fullName[fullName.length - 1];
-    fullName = fullName.join(" ");
+    let newn =
+      ar[current].children[0].children[0].children[0].children[0].children[0]
+        .children[0].children[0].children[1].dataset.name;
+    fullName = newn;
     date = ar[current].innerText.split("\n")[1];
   }
   const conversationURL = document.location.href;
