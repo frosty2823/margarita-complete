@@ -280,8 +280,15 @@ const copyToClickBoard = function (buttonText, personalNote) {
   } else {
     let notLast1 = document
       .querySelector(".nH.hx")
-      .children[2].children[current].innerText.split("\n");
-    lastEmailContent = notLast1[notLast1.length - 1];
+      .children[2].children[0].innerText.split("\n");
+    const newArray = notLast1.join(" ");
+    let checkthisNow = newArray.substring(
+      newArray.indexOf("Save email as template")
+    );
+    lastEmailContent = checkthisNow
+      .replace("Save email as template", "")
+      .split("\t")
+      .join(" ");
     date = ar[current].innerText.split("\n")[1];
   }
   const conversationURL = document.location.href;
