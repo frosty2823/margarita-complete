@@ -245,28 +245,40 @@ const copyToClickBoard = function (buttonText, personalNote) {
   let fullName = "";
   let date = "";
   let lastEmailContent = "";
-  let newa =
-    ar[current].children[0].children[0].children[0].children[0].children[0]
-      .children[0].children[0].children[1].dataset.hovercardId;
-  email = newa;
+  let newEmail = "";
+  let breakThis = 0;
+  let generateEmailList = ar[current].children[0].children[0].querySelectorAll(
+    "[data-hovercard-id]"
+  );
+  let validEmail = generateEmailList.forEach(function (checkThis) {
+    if (checkThis.getAttribute("email") != null && breakThis != 1) {
+      newEmail = checkThis.getAttribute("email");
+      breakThis = 1;
+    }
+  });
+  email = newEmail;
   const domainName = email.split("@").pop();
+  let newName = "";
+  let breakThisForName = 0;
+  let generateNameList = ar[current].children[0].children[0].querySelectorAll(
+    "[data-hovercard-id]"
+  );
+  let validName = generateNameList.forEach(function (checkThis) {
+    if (checkThis.getAttribute("name") != ":1k" && breakThisForName != 1) {
+      newName = checkThis.getAttribute("name");
+      breakThisForName = 1;
+    }
+  });
+  fullName = newName;
   if (current == ar.length - 1) {
     lastEmailContent = arr[arr.length - 2].innerText.split("\n").join(" ");
     lastEmailContent = lastEmailContent.split("\t").join(" ");
-    let newn =
-      ar[current].children[0].children[0].children[0].children[0].children[0]
-        .children[0].children[0].children[1].dataset.name;
-    fullName = newn;
     date = ar[ar.length - 1].innerText.split("\n")[1];
   } else {
     let notLast1 = document
       .querySelector(".nH.hx")
       .children[2].children[current].innerText.split("\n");
     lastEmailContent = notLast1[notLast1.length - 1];
-    let newn =
-      ar[current].children[0].children[0].children[0].children[0].children[0]
-        .children[0].children[0].children[1].dataset.name;
-    fullName = newn;
     date = ar[current].innerText.split("\n")[1];
   }
   const conversationURL = document.location.href;
