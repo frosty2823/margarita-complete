@@ -286,14 +286,29 @@ const copyToClickBoard = function (buttonText, personalNote) {
     let notLast1 = document
       .querySelector(".nH.hx")
       .children[2].children[current].innerText.split("\n");
-    const newArray = notLast1.join(" ");
-    let checkthisNow = newArray.substring(
-      newArray.indexOf("Save email as template")
-    );
-    lastEmailContent = checkthisNow
-      .replace("Save email as template", "")
-      .split("\t")
-      .join(" ");
+    if (notLast1.join("").includes("Save email as template")) {
+      const newArray = notLast1.join(" ");
+      let checkthisNow = newArray.substring(
+        newArray.indexOf("Save email as template")
+      );
+      lastEmailContent = checkthisNow
+        .replace("Save email as template", "")
+        .split("\t")
+        .join(" ");
+    } else if (notLast1[3].includes("me")) {
+      delete notLast1[0];
+      delete notLast1[1];
+      delete notLast1[2];
+      delete notLast1[3];
+      delete notLast1[4];
+      lastEmailContent = notLast1.join("");
+    } else {
+      delete notLast1[0];
+      delete notLast1[1];
+      delete notLast1[2];
+      delete notLast1[3];
+      lastEmailContent = notLast1.join("");
+    }
     date = ar[current].innerText.split("\n")[1];
   }
   const conversationURL = document.location.href;
