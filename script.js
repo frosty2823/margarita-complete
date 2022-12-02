@@ -264,7 +264,10 @@ const copyToClickBoard = function (buttonText, personalNote) {
     "[data-hovercard-id]"
   );
   let validName = generateNameList.forEach(function (checkThis) {
-    if (checkThis.getAttribute("name") != ":1k" && breakThisForName != 1) {
+    if (
+      !checkThis.getAttribute("name").includes(":") &&
+      breakThisForName != 1
+    ) {
       newName = checkThis.getAttribute("name");
       breakThisForName = 1;
     }
