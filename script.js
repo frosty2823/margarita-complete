@@ -259,16 +259,10 @@ const copyToClickBoard = function (buttonText, personalNote) {
     fullName = newn;
     date = ar[ar.length - 1].innerText.split("\n")[1];
   } else {
-    let notLast = document
+    let notLast1 = document
       .querySelector(".nH.hx")
       .children[2].children[current].innerText.split("\n");
-    delete notLast[0];
-    delete notLast[1];
-    delete notLast[2];
-    delete notLast[3];
-    delete notLast[4];
-    lastEmailContent = notLast.join(" ");
-    lastEmailContent = lastEmailContent.split("\t").join(" ");
+    lastEmailContent = notLast1[notLast1.length - 1];
     let newn =
       ar[current].children[0].children[0].children[0].children[0].children[0]
         .children[0].children[0].children[1].dataset.name;
