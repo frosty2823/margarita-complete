@@ -19,7 +19,7 @@ window.addEventListener("load", function () {
         sliderBtn.click();
         languageSelect.textContent = "French";
         let frenchWords = [
-          "Prospect",
+          "Lead Reference",
           "Lead",
           "Reference",
           "Infolettre",
@@ -37,7 +37,7 @@ window.addEventListener("load", function () {
           varNameOne: sliderBtn.checked,
         });
         let englishWords = [
-          "Prospect",
+          "Lead Reference",
           "Lead",
           "Referral",
           "Newsletter",
@@ -66,7 +66,7 @@ window.addEventListener("load", function () {
       });
       languageSelect.textContent = "French";
       let frenchWords = [
-        "Prospect",
+        "Lead Reference",
         "Lead",
         "Reference",
         "Infolettre",
@@ -84,7 +84,7 @@ window.addEventListener("load", function () {
         varNameOne: sliderBtn.checked,
       });
       let englishWords = [
-        "Prospect",
+        "Lead Reference",
         "Lead",
         "Referral",
         "Newsletter",
