@@ -285,7 +285,7 @@ const copyToClickBoard = function (buttonText, personalNote) {
   } else {
     let notLast1 = document
       .querySelector(".nH.hx")
-      .children[2].children[0].innerText.split("\n");
+      .children[2].children[current].innerText.split("\n");
     const newArray = notLast1.join(" ");
     let checkthisNow = newArray.substring(
       newArray.indexOf("Save email as template")
