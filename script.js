@@ -265,9 +265,14 @@ const copyToClickBoard = function (buttonText, personalNote) {
   );
   let validName = generateNameList.forEach(function (checkThis) {
     if (
-      !checkThis.getAttribute("name").includes(":") &&
-      breakThisForName != 1
+      !(
+        checkThis.getAttribute("name").includes(":") &&
+        checkThis.getAttribute("name").length <= 4
+      ) &&
+      breakThisForName != 1 &&
+      !checkThis.getAttribute("name").includes("undefined")
     ) {
+      console.log(checkThis.getAttribute("name"));
       newName = checkThis.getAttribute("name");
       breakThisForName = 1;
     }
