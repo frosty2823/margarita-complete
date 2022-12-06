@@ -21,10 +21,10 @@ window.addEventListener("load", function () {
         let frenchWords = [
           "Lead Reference",
           "Lead",
+          "Lead Suivi",
           "Reference",
           "Infolettre",
           "Negatif",
-          "Contacter plus tard",
         ];
         let i = 0;
         buttons.forEach((btn) => {
@@ -39,10 +39,10 @@ window.addEventListener("load", function () {
         let englishWords = [
           "Lead Reference",
           "Lead",
+          "Lead Follow-up",
           "Referral",
           "Newsletter",
           "Negative",
-          "Contact Later",
         ];
         let i = 0;
         buttons.forEach((btn) => {
@@ -68,10 +68,10 @@ window.addEventListener("load", function () {
       let frenchWords = [
         "Lead Reference",
         "Lead",
+        "Lead Suivi",
         "Reference",
         "Infolettre",
         "Negatif",
-        "Contacter plus tard",
       ];
       let i = 0;
       buttons.forEach((btn) => {
@@ -86,10 +86,10 @@ window.addEventListener("load", function () {
       let englishWords = [
         "Lead Reference",
         "Lead",
+        "Lead Follow-up",
         "Referral",
         "Newsletter",
         "Negative",
-        "Contact Later",
       ];
       let i = 0;
       buttons.forEach((btn) => {
