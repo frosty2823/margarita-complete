@@ -19,8 +19,8 @@ window.addEventListener("load", function () {
         sliderBtn.click();
         languageSelect.textContent = "French";
         let frenchWords = [
+          "Lead ",
           "Lead Reference",
-          "Lead",
           "Lead Suivi",
           "Reference",
           "Infolettre",
@@ -37,8 +37,8 @@ window.addEventListener("load", function () {
           varNameOne: sliderBtn.checked,
         });
         let englishWords = [
-          "Lead Reference",
           "Lead",
+          "Lead Reference",
           "Lead Follow-up",
           "Referral",
           "Newsletter",
@@ -66,8 +66,8 @@ window.addEventListener("load", function () {
       });
       languageSelect.textContent = "French";
       let frenchWords = [
-        "Lead Reference",
         "Lead",
+        "Lead Reference",
         "Lead Suivi",
         "Reference",
         "Infolettre",
@@ -84,8 +84,8 @@ window.addEventListener("load", function () {
         varNameOne: sliderBtn.checked,
       });
       let englishWords = [
-        "Lead Reference",
         "Lead",
+        "Lead Reference",
         "Lead Follow-up",
         "Referral",
         "Newsletter",
@@ -228,6 +228,50 @@ const runGoogleSheet = function () {
 const copyToClickBoard = function (buttonText, personalNote) {
   // let date = document.querySelector(".g3").getAttribute("title");
   // const email = document.querySelector(".gD").getAttribute("email");
+  let spanishMonths = [
+    "ene",
+    "feb",
+    "mar",
+    "abr",
+    "may",
+    "jun",
+    "jul",
+    "ago",
+    "sept",
+    "oct",
+    "nov",
+    "dic",
+  ];
+
+  let frenchMonths = [
+    "janv.",
+    "févr.",
+    "mars. ",
+    "avr.",
+    "mai.",
+    "juin.",
+    "juil.",
+    "août.",
+    "sept.",
+    "oct.",
+    "nov.",
+    "déc.",
+  ];
+
+  let EnglishMonths = [
+    "Jan",
+    "Feb",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "Aug",
+    "Sept",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
   if (document.querySelector(".adx")) {
     document.querySelector(".adx").click();
   }
@@ -286,6 +330,16 @@ const copyToClickBoard = function (buttonText, personalNote) {
     let notLast1 = document
       .querySelector(".nH.hx")
       .children[2].children[current].innerText.split("\n");
+    if (
+      notLast1.includes("Translate message") &&
+      !notLast1.join("").includes("Save email as template")
+    ) {
+      let checkthisNow = notLast1.indexOf("Translate message") + 1;
+      for (let i = 0; i <= checkthisNow; i++) {
+        delete notLast1[i];
+      }
+      lastEmailContent = notLast1.join("");
+    }
     if (notLast1.join("").includes("Save email as template")) {
       const newArray = notLast1.join(" ");
       let checkthisNow = newArray.substring(
@@ -315,6 +369,7 @@ const copyToClickBoard = function (buttonText, personalNote) {
   let newDD = "";
   let month = "";
   let y3 = "";
+  // For spanish, it starts right after English
   if (
     !(
       date.includes("Jan") ||
@@ -328,16 +383,41 @@ const copyToClickBoard = function (buttonText, personalNote) {
       date.includes("Sept") ||
       date.includes("Oct") ||
       date.includes("Nov") ||
-      date.includes("Dec")
+      date.includes("Dec") ||
+      date.includes("ene") ||
+      date.includes("feb") ||
+      date.includes("mar") ||
+      date.includes("abr") ||
+      date.includes("may") ||
+      date.includes("jun") ||
+      date.includes("jul") ||
+      date.includes("ago") ||
+      date.includes("sept") ||
+      date.includes("oct") ||
+      date.includes("nov") ||
+      date.includes("dic") ||
+      date.includes("janv.") ||
+      date.includes("vr.") ||
+      date.includes("mars.") ||
+      date.includes("avr.") ||
+      date.includes("mai.") ||
+      date.includes("juin.") ||
+      date.includes("juil.") ||
+      date.includes("ao.") ||
+      date.includes("sept.") ||
+      date.includes("oct.") ||
+      date.includes("nov.") ||
+      date.includes("c.")
     )
   ) {
+    console.log(date.includes("d"), date);
     date = new Date();
     newDD = date.getDate();
     month = date.getMonth() + 1;
     y3 = date.getFullYear();
   } else {
     // Creating the textfield from where we will execute the copy commmand
-
+    // After English, Spanish days are written
     if (
       !(
         date.includes("Mon") ||
@@ -346,15 +426,35 @@ const copyToClickBoard = function (buttonText, personalNote) {
         date.includes("Thu") ||
         date.includes("Fri") ||
         date.includes("Sat") ||
-        date.includes("Sun")
+        date.includes("Sun") ||
+        date.includes("lun") ||
+        date.includes("mar") ||
+        date.includes("mi") ||
+        date.includes("jue") ||
+        date.includes("vie") ||
+        date.includes("b") ||
+        date.includes("dom") ||
+        date.includes("lun") ||
+        date.includes("mar") ||
+        date.includes("mer") ||
+        date.includes("jeu") ||
+        date.includes("ven") ||
+        date.includes("sam") ||
+        date.includes("dim")
       )
     ) {
       let dateArray = date.split(" ");
       let y1 = dateArray[2].split("");
       y3 = y1[0] + y1[1] + y1[2] + y1[3];
+      console.log("Executing", y3, dateArray, y1);
       month = 0;
-      let newD = dateArray[1].split("");
-      newDD = newD[0] + newD[1];
+      if (!EnglishMonths.includes(dateArray[0])) {
+        newDD = dateArray[0];
+        dateArray[0] = dateArray[1];
+      } else {
+        let newD = dateArray[1].split(",");
+        newDD = newD[0];
+      }
       if (dateArray[0] == "Jan") month = 1;
       else if (dateArray[0] == "Feb") month = 2;
       else if (dateArray[0] == "March") month = 3;
@@ -367,12 +467,74 @@ const copyToClickBoard = function (buttonText, personalNote) {
       else if (dateArray[0] == "Oct") month = 10;
       else if (dateArray[0] == "Nov") month = 11;
       else if (dateArray[0] == "Dec") month = 12;
+      else if (dateArray[0] == "ene") month = 1;
+      else if (dateArray[0] == "feb") month = 2;
+      else if (dateArray[0] == "mar") month = 3;
+      else if (dateArray[0] == "abr") month = 4;
+      else if (dateArray[0] == "may") month = 5;
+      else if (dateArray[0] == "jun") month = 6;
+      else if (dateArray[0] == "jul") month = 7;
+      else if (dateArray[0] == "ago") month = 8;
+      else if (dateArray[0] == "sept") month = 9;
+      else if (dateArray[0] == "oct") month = 10;
+      else if (dateArray[0] == "nov") month = 11;
+      else if (dateArray[0] == "dic") month = 12;
+      else if (dateArray[0] == "janv.") month = 1;
+      else if (dateArray[0].includes("vr.")) month = 2;
+      else if (dateArray[0] == "mars.") month = 3;
+      else if (dateArray[0] == "avr.") month = 4;
+      else if (dateArray[0] == "mai.") month = 5;
+      else if (dateArray[0] == "juin.") month = 6;
+      else if (dateArray[0] == "juil.") month = 7;
+      else if (dateArray[0].includes("ao")) month = 8;
+      else if (dateArray[0] == "sept.") month = 9;
+      else if (dateArray[0] == "oct.") month = 10;
+      else if (dateArray[0] == "nov.") month = 11;
+      else if (dateArray[0].includes("c.")) month = 12;
     } else {
-      let dateArray = date.split(",");
+      console.log(date);
+      let dateArray = "";
+      if (
+        !(
+          date.includes("Jan") ||
+          date.includes("Feb") ||
+          date.includes("March") ||
+          date.includes("April") ||
+          date.includes("May") ||
+          date.includes("June") ||
+          date.includes("July") ||
+          date.includes("Aug") ||
+          date.includes("Sept") ||
+          date.includes("Oct") ||
+          date.includes("Nov") ||
+          date.includes("Dec") ||
+          date.includes("ene") ||
+          date.includes("feb") ||
+          date.includes("mar") ||
+          date.includes("abr") ||
+          date.includes("may") ||
+          date.includes("jun") ||
+          date.includes("jul") ||
+          date.includes("ago") ||
+          date.includes("sept") ||
+          date.includes("oct") ||
+          date.includes("nov") ||
+          date.includes("dic")
+        )
+      )
+        dateArray = date.split(".");
+      else dateArray = date.split(",");
       let previousDay = dateArray[dateArray.length - 2].split(" ");
-      console.log(previousDay);
-      newDD = previousDay[previousDay.length - 1];
-      month = previousDay[previousDay.length - 2];
+      month = 0;
+
+      if (!EnglishMonths.includes(previousDay[1])) {
+        newDD = previousDay[previousDay.length - 2];
+        month = previousDay[previousDay.length - 1];
+      } else {
+        newDD = previousDay[previousDay.length - 1];
+        month = previousDay[previousDay.length - 2];
+      }
+
       let y2 = new Date();
       y3 = y2.getFullYear();
       if (month == "Jan") month = 1;
@@ -387,6 +549,30 @@ const copyToClickBoard = function (buttonText, personalNote) {
       else if (month == "Oct") month = 10;
       else if (month == "Nov") month = 11;
       else if (month == "Dec") month = 12;
+      else if (month == "ene") month = 1;
+      else if (month == "feb") month = 2;
+      else if (month == "mar") month = 3;
+      else if (month == "abr") month = 4;
+      else if (month == "may") month = 5;
+      else if (month == "jun") month = 6;
+      else if (month == "jul") month = 7;
+      else if (month == "ago") month = 8;
+      else if (month == "sept") month = 9;
+      else if (month == "oct") month = 10;
+      else if (month == "nov") month = 11;
+      else if (month == "dic") month = 12;
+      else if (month == "janv.") month = 1;
+      else if (month.includes("vr")) month = 2;
+      else if (month == "mars") month = 3;
+      else if (month == "avr") month = 4;
+      else if (month == "mai") month = 5;
+      else if (month == "juin") month = 6;
+      else if (month == "juil") month = 7;
+      else if (month.includes("t")) month = 8;
+      else if (month == "sept") month = 9;
+      else if (month == "oct") month = 10;
+      else if (month == "nov") month = 11;
+      else if (month.includes("c")) month = 12;
     }
   }
   date = `${month}/${newDD}/${y3}`;
