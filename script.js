@@ -1,5 +1,5 @@
 window.addEventListener("load", function () {
-  const buttons = document.querySelectorAll(".margarita");
+  const buttons = document.querySelectorAll(".airDelva");
   const personalNote = document.querySelector("#personalNote");
   const successLabel = document.querySelector("#clipped");
   const sliderBtn = document.querySelector("#checkBox");

@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
-  "name": "Margarita",
-  "version": "3.3",
+  "name": "Air Devla",
+  "version": "3.4",
   "description": "It fetches the content from currently opened conversation",
 
   "author": "Oliver",
@@ -10,7 +10,7 @@
     "default_icon": {
       "19": "image.png"
     },
-    "default_title": "Margarita",
+    "default_title": "Air Devla",
     "default_popup": "popup.html"
   },
   "permissions": [
