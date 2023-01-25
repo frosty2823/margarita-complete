@@ -371,6 +371,12 @@ const copyToClickBoard = function (buttonText, personalNote) {
   let y3 = "";
   // For spanish, it starts right after English
   if (
+    date.includes("minutes") ||
+    date.includes("seconds") ||
+    date.includes("hours") ||
+    date.includes("minute") ||
+    date.includes("second") ||
+    date.includes("hour") ||
     !(
       date.includes("Jan") ||
       date.includes("Feb") ||

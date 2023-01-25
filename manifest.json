@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Air Delva",
-  "version": "3.5",
+  "version": "3.6",
   "description": "It fetches the content from currently opened conversation",
 
   "author": "Oliver",
